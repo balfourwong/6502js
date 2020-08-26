@@ -1,7 +1,7 @@
 /*
 *  6502 assembler and simulator in Javascript
 *  (C)2006-2010 Stian Soreng - www.6502asm.com
-* Additional edit test
+* Additional edit test more
 *  Adapted by Nick Morgan
 *  https://github.com/skilldrick/6502js
 *
