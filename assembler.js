@@ -2491,3 +2491,20 @@ $(document).ready(function () {
     SimulatorWidget(this);
   });
 });
+
+function Load( file ) {
+  document.getElementById( "code" ).value = "Loading, please wait..";
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = FileLoaded;
+  xmlhttp.open( "GET", "assets/examples/" + file );
+  xmlhttp.send( null );
+  stopDebugger();
+}
+
+function FileLoaded() {
+  if( xmlhttp.readyState == 4 )
+    if( xmlhttp.status == 200 ) {
+      document.getElementById( "code" ).value = xmlhttp.responseText;
+      document.getElementById( "compileButton" ).disabled = false;
+    }
+}

@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <title>6502 assembler/simulator</title>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container-fluid widget">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <h3 class="pb-1">6502 Assembler</h3> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <h5>Code</h5>
+                    <textarea placeholder="6502 code here..." class="code" id="code" onKeyPress="disableButtons();"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <h5>Screen</h5>
+                    <canvas class="screen" width="800px" height="800px"></canvas>                     
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="notes" style="display: none">Notes:
+                        Memory location $fe contains a new random byte on every instruction.
+                        Memory location $ff contains the ascii code of the last key pressed.
+                        Memory locations $200 to $5ff map to the screen pixels. Different values will
+                        draw different colour pixels. The colours are:
+                        $0: Black
+                        $1: White
+                        $2: Red
+                        $3: Cyan
+                        $4: Purple
+                        $5: Green
+                        $6: Blue
+                        $7: Yellow
+                        $8: Orange
+                        $9: Brown
+                        $a: Light red
+                        $b: Dark grey
+                        $c: Grey
+                        $d: Light green
+                        $e: Light blue
+                        $f: Light grey
+</div>
+                    <div class="debugger">
+                        <input type="checkbox" class="debug" name="debug"/>
+                        <label for="debug">Debugger</label>
+                        <div class="minidebugger"></div>
+                        <div class="buttons">
+                            <input type="button" value="Step" class="stepButton btn btn-secondary"/>
+                            <input type="button" value="Jump to ..." class="gotoButton btn btn-secondary"/>
+                        </div>
+                    </div>                     
+                </div>
+                <div class="col-md-6 pb-2">
+                    <h5>Console</h5>
+                    <div class="messages">
+                        <pre><code></code></pre>
+                    </div>                     
+                </div>
+                <div class="col-md-6">
+                    <div class="notes" style="display: none">Notes:
+                        Memory location $fe contains a new random byte on every instruction.
+                        Memory location $ff contains the ascii code of the last key pressed.
+                        Memory locations $200 to $5ff map to the screen pixels. Different values will
+                        draw different colour pixels. The colours are:
+                        $0: Black
+                        $1: White
+                        $2: Red
+                        $3: Cyan
+                        $4: Purple
+                        $5: Green
+                        $6: Blue
+                        $7: Yellow
+                        $8: Orange
+                        $9: Brown
+                        $a: Light red
+                        $b: Dark grey
+                        $c: Grey
+                        $d: Light green
+                        $e: Light blue
+                        $f: Light grey
+</div>
+                    <div class="monitor">
+                        <h5>Monitor</h5>
+                        <pre><code></code></pre>
+                    </div>
+                    <div class="monitorControls">
+                        <label for="monitoring">Monitor</label>
+                        <input type="checkbox" class="monitoring" name="monitoring"/>
+                        <label for="start">Start: $</label>
+                        <input type="text" value="0" class="start" name="start"/>
+                        <label for="length">Length: $</label>
+                        <input type="text" value="ff" class="length" name="length"/>
+                    </div>                     
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <input type="button" value="Assemble" class="assembleButton btn btn-secondary"/>
+                    <input type="button" value="Run" class="btn btn-success runButton"/>
+                    <input type="button" value="Reset" id="reset" class="btn btn-primary resetButton" onclick="document.getElementById('reset').removeAttribute('disabled')"/>
+                    <input type="button" value="Hexdump" class="btn btn-danger hexdumpButton"/>
+                    <input type="button" value="Disassemble" class="btn btn-secondary disassembleButton"/>
+                    <input type="button" value="Notes" class="btn btn-secondary notesButton"/>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-group form-control" id="fileSelect" onChange="Load(this.options[this.selectedIndex].value)">
+                        <option>Examples</option>
+                        <option>alive.asm</option>
+                        <option>byterun.asm</option>
+                        <option>colors.asm</option>
+                        <option>demoscene.asm</option>
+                        <option>disco.asm</option>
+                        <option>fullscreenlogo.asm</option>
+                        <option>gameoflife.asm</option>
+                        <option>random.asm</option>
+                        <option>spacer.asm</option>
+                        <option>starfield2d.asm</option>
+                        <option>snake.asm</option>
+                    </select>                     
+                </div>
+            </div>
+            <script src="es5-shim.js"></script>
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assembler.js"></script>
+            <script src="assets/js/popper.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</html>
